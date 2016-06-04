@@ -1,0 +1,27 @@
+{
+  "name": "node-red-contrib-samsung-tv",
+  "version": "0.1.0",
+  "description": "Node-RED node to control Samsung TVs",
+  "dependencies": {
+    "samsung-remote": "^1.2.5"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node-red",
+    "samsung",
+    "tv"
+  ],
+  "node-red": {
+    "nodes": {
+      "Samsing TV": "nodes/samsung-tv.js"
+    }
+  },
+  "author": {
+    "name": "Den Williams",
+    "email": "work@denwilliams.net",
+    "url": "http://denwilliams.net"
+  }
+}

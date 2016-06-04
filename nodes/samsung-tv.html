@@ -1,0 +1,105 @@
+<!--
+
+  SAMSUNG TV - config node which represents the device. Holds ip address
+
+-->
+<script type="text/javascript">
+  RED.nodes.registerType("samsung-tv", {
+    category: "config",
+    defaults: {
+      name: {value:"", required:false},
+      address: {value:"", required:true}
+    },
+    label: function() {
+      return this.name ? this.name : 'Samsung TV';
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="samsung-tv">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name" />
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-address"><i class="fa fa-globe"></i> Address</label>
+        <input type="text" id="node-config-input-address" placeholder="192.168.0.123" />
+    </div>
+    <div class="form-row">
+      <label>&nbsp;</label>
+      <input type="checkbox" id="node-config-input-debug" style="display: inline-block; width: auto; vertical-align: top;">
+      <label for="node-config-input-debug" style="width: 70%;"> Debug mode</label>
+    </div>
+    <div class="form-tips">
+      <p>You need to configure the IP address or hostname of the Samsung TV here.</p>
+    </div>
+</script>
+
+<!--
+
+  SAMSUNG TV - "send" node to write different values to the device.
+
+-->
+<script type="text/javascript">
+  RED.nodes.registerType("samsung-tv-send", {
+    category: "devices",
+    color: "#87E980",
+    icon: "tv.png",
+    defaults: {
+      device: {type:"samsung-tv", required:true},
+      name: {value:"", required:false},
+      key: {value:"", required:false}
+    },
+    inputs:1,
+    // outputs:1,
+    paletteLabel: "Samsung TV Send",
+    align: 'right',
+    label: function() {
+      return this.name ? this.name : "Samsung TV Send";
+    },
+    oneditprepare: function() {
+      var valueKey=$('#node-input-key').val();
+      $("#node-input-key").replaceWith('<select id="node-input-key" name="node-input-key" style="width: 250px;">');
+      $('#node-input-key').find('option').remove();
+
+      // Read list of possible keys from server and add to dropdown
+      $.ajax({
+          url: 'samsungtv/references/send',
+          success: function(data) {
+  					var data = JSON.parse(data);
+  					for (var i = 0; i < data.length; i++) {
+  						$('#node-input-key').find('option').end().append('<option value="' + data[i] + '">' + data[i] + '</option>');
+  					}
+
+            // write back value
+            $('#node-input-key').val(valueKey);
+         }
+      });
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="samsung-tv-send">
+    <div class="form-row">
+        <label for="node-input-device"><i class="fa fa-keyboard-o"></i> Device</label>
+        <input type="text" id="node-input-device">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" />
+    </div>
+    <div class="form-row">
+        <label for="node-input-key"><i class="fa fa-tasks"></i> Key</label>
+        <input type="text" id="node-input-key" style="!important">
+    </div>
+    <div class="form-tips" id="node-input-key" style="margin-top:5px margin-bottom:5px">
+        <div>
+          Select a reference node to write the payload to.
+        </div>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="samsung-tv-send">
+   <p>Sends keys to Samsung network connected TVs</p>
+   <p>Select the key to send in the node settings or the msg.payload.</p>
+</script>
