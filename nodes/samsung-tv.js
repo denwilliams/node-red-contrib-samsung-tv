@@ -39,14 +39,6 @@ function registerSamsungTvNodes(RED) {
     this.name = config.name;
 
     // Config node state
-    // this.connected = false;
-    // this.connecting = false;
-    // this.closing = false;
-    // this.subscriptions = {};
-    // this.inputSocket = undefined;
-    // this.devDesc = undefined;
-    // this.yamaha = new YamahaAPI(this.address);
-
     this.remote = new SamsungRemote({ip: this.address});
     this.send = this.remote.send.bind(this.remote);
     this.isAlive = this.remote.isAlive.bind(this.remote);
