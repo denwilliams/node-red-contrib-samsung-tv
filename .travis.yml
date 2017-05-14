@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- '4'
+before_install:
+- npm install
+deploy:
+  provider: npm
+  email: work@denwilliams.net
+  on:
+    tags: true
+    repo: denwilliams/node-red-contrib-samsung-tv
+  api_key:
+    secure: lrIao82OHdSjSThzJcVFPD0aQ6HJUhGkoUCG4ZmlUur/p0w6Z0AaqvOh8TIeQRm1pmKiZDEOfBKSmOa/Zq9vH7VG44LUeOsVyuOPhT0bYVI8fJMvfbxbTj3LzyJr1qTohTkwSUb0MbqDKGoaWbH71o5kpd4iRfii+xVMYjvIk5fFDwPdT8SrRKUgG+adbxYrJGi7CS91MSSX630+4wVXUr+Ke3y2poO8HS7fFZCFkrjBwwjOW4Cijq5MlLHpyK7/B14lyHMyL7cIYnT7lFFrhG4dmToRHKOeHoJ/rWn9n5b/mpRnn2HR9FbOLK0rQG6oXa8XvDCPuZ1PLcgGPMM/a44MVWRjqUPFKsUSntIV5odzL5S9fMWAf2QQlTHznmG55kUyPttCtrJ2L2BX8t8W/U5Y/6gcg36DM0sRroGRibQgyMMevuy1ZY4mUdZuM1oRV0Y7zI2ts6f0MCdy5Oh0l47nW/+IV5Fb+htGCsrfico+BquCEIXYqwB2GxDUUV34ToMgLrzxV3mRAeoT0QI/vtCPatKCdgWKLWuyPyYPdiW6C/+jYCjLS+KnqhOdVeh0XR/BctZDeMi2lmUA8n/Okf0/sXLypNd+tKGZf5WgbQHEa7cU9Bs1B3KT4vdw9Tqyfcs+xmoVEl8xsVX1onaKrYoYNOizxTPC3qIjPZ24Tvo=
