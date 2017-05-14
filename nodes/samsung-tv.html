@@ -103,3 +103,43 @@
    <p>Sends keys to Samsung network connected TVs</p>
    <p>Select the key to send in the node settings or the msg.payload.</p>
 </script>
+
+
+<!--
+
+  SAMSUNG TV - check if TV is alive (on)
+
+-->
+<script type="text/javascript">
+  RED.nodes.registerType("samsung-tv-isalive", {
+    category: "devices",
+    color: "#87E980",
+    icon: "tv.png",
+    defaults: {
+      device: {type:"samsung-tv", required:true},
+      name: {value:"", required:false}
+    },
+    inputs:1,
+    outputs:2,
+    paletteLabel: "Samsung TV Is Alive",
+    align: 'right',
+    label: function() {
+      return this.name ? this.name : "Samsung TV Is Alive";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="samsung-tv-isalive">
+    <div class="form-row">
+        <label for="node-input-device"><i class="fa fa-keyboard-o"></i> Device</label>
+        <input type="text" id="node-input-device">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" />
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="samsung-tv-isalive">
+   <p>Returns to output pin 1 if the TV is on, 2 if not</p>
+</script>

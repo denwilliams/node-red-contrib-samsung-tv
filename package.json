@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-samsung-tv",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Node-RED node to control Samsung TVs",
   "dependencies": {
     "samsung-remote": "^1.2.5"
@@ -16,7 +16,7 @@
   ],
   "node-red": {
     "nodes": {
-      "Samsing TV": "nodes/samsung-tv.js"
+      "Samsung TV": "nodes/samsung-tv.js"
     }
   },
   "author": {

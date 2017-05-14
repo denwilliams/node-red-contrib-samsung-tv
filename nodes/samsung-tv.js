@@ -89,11 +89,44 @@ function registerSamsungTvNodes(RED) {
       });
 
     } else {
-      this.error(RED._("samdung-tv.errors.missing-config"));
+      this.error(RED._("samsung-tv.errors.missing-config"));
     }
   }
   RED.nodes.registerType("samsung-tv-send", SamsungTvNodeSend);
 
+
+
+
+  /* ---------------------------------------------------------------------------
+   * ISALIVE node
+   * -------------------------------------------------------------------------*/
+  function SamsungTvNodeIsAlive(config) {
+    RED.nodes.createNode(this, config);
+
+    // Save settings in local node
+    this.device = config.device;
+    this.deviceNode = RED.nodes.getNode(this.device);
+    this.name = config.name;
+    this.key = config.key;
+
+    var node = this;
+    if (this.deviceNode) {
+
+      node.on('input', function(msg) {
+        node.deviceNode.isAlive(function (err) {
+          if (err) {
+            node.send([null, msg]);
+          } else {
+            node.send([msg, null]);
+          }
+        });
+      });
+
+    } else {
+      this.error(RED._("samsung-tv.errors.missing-config"));
+    }
+  }
+  RED.nodes.registerType("samsung-tv-isalive", SamsungTvNodeIsAlive);
 
 
   /* ---------------------------------------------------------------------------
