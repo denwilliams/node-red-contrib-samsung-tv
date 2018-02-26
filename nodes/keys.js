@@ -1,6 +1,7 @@
 module.exports = [
   '',
   'KEY_MENU',
+  'KEY_ENTER',
   'KEY_UP',
   'KEY_DOWN',
   'KEY_LEFT',
